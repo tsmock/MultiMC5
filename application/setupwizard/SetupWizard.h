@@ -30,8 +30,19 @@ public: /* con/destructors */
 	explicit SetupWizard(QWidget *parent = 0);
 	virtual ~SetupWizard();
 
+	void changeEvent(QEvent * event) override;
+
 public: /* methods */
-static bool isRequired();
+	static bool isRequired();
+	static bool languageIsRequired();
+	static bool javaIsRequired();
+	static bool analyticsIsRequired();
+
+private slots:
+	void languageRowChanged(const QModelIndex & current, const QModelIndex & previous);
+
+private: /* methods */
+	void retranslate();
 
 private: /* data */
 	Ui::SetupWizard *ui = nullptr;
